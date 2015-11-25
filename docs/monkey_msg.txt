@@ -1,0 +1,41 @@
+#### Protocolo de comunicação ####
+
+// MONKEY MESSAGE //
+
+    O protocolo Monkey é um protocolo de mensagens simples que não se baseia nos
+padrões conhecidos. O mesmo não utiliza nem JSON nem XML nem CUBORN ou qualquer outro estilo
+o que pode a principio parecer que o mesmo é de dificil construção o que não é verdade
+visto que o mesmo pode enviar mensagens nesses 3 formatos de forma direta, o que
+acontece é que o protcolo de comunicação com o servidor é distinto e suporta formatações
+
+    O estilo das mensagens é o apresentado a seguir:
+    
+    [>] [<destination>][OPTIONS][HEADER]{" ... "}[CRC:xxxxxx] [/]
+    
+    Como pode ser visto a combinação "[>]" representa o inicio da mensagem e o
+caractere "[/]" representa o fim.
+    A primeira variavel da mensagem representa o usuario aonde o caractere curinga
+"*" representa todos os usuarios o caractere curinga "$" representa um grupo de usuarios
+e o caractere curinga "#" representa uma comunidade, é importante aqui mostrar que é
+possível mandar mensagens para diversos grupos e ou usuarios e ou comunidades através
+do caractere separador ";" logo caso quisessemos enviar para os usuarios do grupo "restart"
+para o usuario "ramon_viado" e para a comunidade "putas_ufba" poderiamos utilizar
+a seguinte sintaxe: "ramon_viado:$restart:#putas_ufba".
+    Outra funcionaliade para a entrega de mensagens é o "exchange" ou no nosso contexto
+"redirecionamento". O exchange funciona da seguinte forma o servidor redireciona a mensagen
+para outro servidor e isso pode ser feito de duasformas via broker (nesse caso a mensagen é
+enviada para outro servidor de forma direta), via driver(nesse caso você especifica uma
+aplicação que irá redirecionar a mensagen em outro formato como MQTT, HTTP ou TATU).
+    O estilo para redirecionamento normal é o seguinte "ip:port[:user_list]" aonde pode ser
+sobrescrito a lista de usuarios ou seja a mensagen seria enviada para *.
+    Caso o destino seja * nenhum outro parametro séra aceito e caso a mensagen contenha outro
+destino apenas com a exceção de um destino que represente um redirecionamento.
+    Toda mensagen é verificada através de um checksum no caso o CRC32 e pode ser encriptada
+através do uso do RC4, é importante lembrar que nesse caso o que será encriptado é a mensagen
+e não o pacote, um pacote encriptado possui em seu interior a seguinte estrutura "USER>>MSG"
+logo caso a senha esteja incorreta o usuario não será lido e a mensagen não será apresentada**.
+
+** Ainda não foi pensado em formas de autenticação
+
+Esse é o começo do Monkey Protocol
+
