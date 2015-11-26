@@ -18,7 +18,7 @@ int main(int argc , char *argv[])
     message[len++] = '\n';
     message[len] = '\0';
     strcpy(&message[len],argv[3]);
-    puts(message);
+    //puts(message);
 
     //Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
