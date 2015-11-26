@@ -88,7 +88,7 @@ int main(int argc , char *argv[])
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
     {
         perror("connect failed. Error");
-        return 1;s
+        return EXIT_FAILURE;
     }
     puts("Connected\n");
 /*
