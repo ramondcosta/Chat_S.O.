@@ -3,12 +3,12 @@ CFLAGS=-pthread
 
 all: main
 
-main:
-	make server/Makefile
-	make client/Makefile
+#main:
+#	cd ./server
+#	make
+#	cd ../client
+#	make
 
 clean:
-	cd server
-	rm *.o
-	cd ../client
-	rm *.o
+	rm ./server/main.o
+	rm ./client/main.o
