@@ -88,10 +88,10 @@ int main(int argc , char *argv[])
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
     {
         perror("connect failed. Error");
-        return 1;
+        return 1;s
     }
-
     puts("Connected\n");
+/*
 
     //Send some data
     if( send(sock , message , strlen(message) , 0) < 0)
@@ -110,7 +110,7 @@ int main(int argc , char *argv[])
     puts("Server reply :");
     //printf("%s\n", server_reply);
     puts(server_reply);
-
+*/
     //keep communicating with server
     while(1)
     {
@@ -126,16 +126,16 @@ int main(int argc , char *argv[])
         }
 
         //Receive a reply from the server
-        if( recv(sock , server_reply , 4000 , 0) < 0)
+        /*if( recv(sock , server_reply , 4000 , 0) < 0)
         {
             puts("recv failed");
             break;
-        }
+        }*/
 
-        puts("Server reply :");
+        //puts("Server reply :");
         //printf("%s\n", server_reply);
-        puts(server_reply);
-        printf("%s\n", message);
+        //puts(server_reply);
+        //printf("%s\n", message);
     }
 
     close(sock);
